@@ -10,7 +10,6 @@ export default function App() {
   const [activeStep, setActiveStep] = useState(null);
   const [isSimulating, setIsSimulating] = useState(false);
   
-  // Estado para la paginación 1x1: 0 = AFN (Thompson), 1 = AFD (Subconjuntos)
   const [currentAutomata, setCurrentAutomata] = useState(0);
 
   const handleGenerate = () => {
@@ -63,16 +62,13 @@ export default function App() {
     <div className="min-h-screen bg-slate-950 text-slate-100 pb-16 font-sans">
       <div className="h-1.5 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400"></div>
 
-      {/* Encabezado */}
+      
       <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
           <div>
-            <span className="text-xs font-bold tracking-widest text-blue-400 uppercase">
-              Universidad Mariano Gálvez de Guatemala
-            </span>
             <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2">
-              Generador de Autómatas <Zap className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-            </h1>
+               
+              Generador de Autómatas </h1>
           </div>
           <div className="flex gap-2">
             <span className="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">
