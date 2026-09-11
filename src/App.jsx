@@ -10,6 +10,7 @@ export default function App() {
   const [activeStep, setActiveStep] = useState(null);
   const [isSimulating, setIsSimulating] = useState(false);
   
+  // Estado para alternar autómatas: 0 = AFN (Thompson), 1 = AFD (Subconjuntos)
   const [currentAutomata, setCurrentAutomata] = useState(0);
 
   const handleGenerate = () => {
@@ -23,7 +24,7 @@ export default function App() {
 
       setData({ postfix, nfa, totalStates, dfa, alphabet, evalRes });
       setActiveStep(null);
-      setCurrentAutomata(0); // Reinicia siempre al primer autómata (AFN)
+      setCurrentAutomata(0);
     } catch (e) {
       alert("Error procesando la expresión regular.");
     }
@@ -35,7 +36,6 @@ export default function App() {
 
   const handleSimulate = () => {
     if (!data?.evalRes) return;
-    // Si están viendo el AFN, cambiamos automáticamente al AFD para simular el recorrido
     if (currentAutomata !== 1) setCurrentAutomata(1);
 
     setIsSimulating(true);
@@ -62,21 +62,13 @@ export default function App() {
     <div className="min-h-screen bg-slate-950 text-slate-100 pb-16 font-sans">
       <div className="h-1.5 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400"></div>
 
-      
+      {/* Encabezado */}
       <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2">
-               
-              Generador de Autómatas </h1>
-          </div>
-          <div className="flex gap-2">
-            <span className="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">
-              AFN Thompson
-            </span>
-            <span className="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">
-              AFD Subconjuntos
-            </span>
+              Generador de Autómatas
+            </h1>
           </div>
         </div>
       </header>
@@ -173,7 +165,7 @@ export default function App() {
           )}
         </section>
 
-        {/* 2. Visualización Paso a Paso con Botones de Avanzar/Retroceder */}
+        {/* 2. Visualización Paso a Paso */}
         {data && (
           <section className="space-y-4">
             {/* Controles de Navegación */}
